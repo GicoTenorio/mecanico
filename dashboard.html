@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tela inicial</title>
+</head>
+<body>
+    <div class="container">
+        <h1 id="h1">Bem-vindo!</h1>
+        <button id="cadastroCliente">Cadastrar cliente</button>
+        <button id="logout">Sair</button>
+    
+    <script>
+        const usuarioSalvo = localStorage.getItem('usuarioLogado');
+
+        if (!usuarioSalvo || usuarioSalvo === 'undefined') {
+            window.location.href = 'login.html';
+        } else {
+            const usuarioDados = JSON.parse(usuarioSalvo);
+            document.getElementById('h1').innerText =
+                `Bem-vindo, ${usuarioDados.user}!`;
+        }
+
+        document.getElementById('logout').addEventListener('click', () => {
+            localStorage.removeItem('usuarioLogado');
+            window.location.href = 'login.html';
+        });
+        document.getElementById('cadastroCliente').addEventListener('click', () => {
+            window.location.href = 'cadastro.html'
+        })
+    </script>
+</body>
+</html>
